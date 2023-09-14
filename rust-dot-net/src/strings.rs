@@ -11,7 +11,21 @@ fn say_hi(name: *const c_char) {
     if let Ok(name) = name.to_str() {
         println!("Hi, {name}!");
     } else {
-        println!("Hi, invalid utf value!");
+        println!("Hi, invalid utf value! ({})", name.to_string_lossy());
+    }
+}
+
+#[no_mangle]
+fn say_hi_lputf8str(name: *const c_char) {
+    let name = unsafe {
+        assert!(!name.is_null());
+        std::ffi::CStr::from_ptr(name)
+    };
+
+    if let Ok(name) = name.to_str() {
+        println!("[LPUTF8] Hi, {name}!");
+    } else {
+        println!("[LPUTF8] Hi, invalid utf value! ({})", name.to_string_lossy());
     }
 }
 

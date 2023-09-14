@@ -10,11 +10,13 @@ namespace RustDotNet
     internal static class Strings
     {
         [DllImport("rdn")] private static extern void say_hi(string name);
+        [DllImport("rdn")] private static extern void say_hi_lputf8str([MarshalAs(UnmanagedType.LPUTF8Str)] string name);
 
         public static void SayHi(string name)
         {
             Console.WriteLine($"Saying hi to '{name}':");
             say_hi(name);
+            say_hi_lputf8str(name);
             Console.WriteLine();
         }
 
@@ -55,7 +57,7 @@ namespace RustDotNet
         {
             IntPtr ptr = string_num_new(num);
             RustStringPtr rsp = new RustStringPtr(ptr);
-            Console.WriteLine($"{rsp}");
+            Console.WriteLine(rsp);
             rsp.Dispose();
         }
     }
