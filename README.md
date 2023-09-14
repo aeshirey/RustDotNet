@@ -54,7 +54,7 @@ $ ls -lh rdn.dll
 
 
 # `RustDotNet`
-The `RustDotNet` project is a sample C# console app that calls into a Rust library (see below). This example uses .NET Framework 4.8 and is intended to be run on Windows. I have not yet evaluated how to run .NET Core in Linux to call into a .so library.
+The `RustDotNet` project is a sample C# console app that calls into the above Rust library. This example uses .NET Framework 4.8 and is intended to be run on Windows. I have not yet evaluated how to run .NET Core in Linux to call into a .so library.
 
 As of 2023-09-14, I am not aware of any Rust projects that automatically generate the C# P/Invokes for Rust code. Instead, we need to write them manually. From within C#, we make use of [`System.Runtime.InteropServices.DllImportAttribute`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-7.0). A simple example looks like this:
 
